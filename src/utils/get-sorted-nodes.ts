@@ -22,6 +22,7 @@ export const getSortedNodes: GetSortedNodes = (nodes, options) => {
         importOrderSeparation,
         importOrderSortSpecifiers,
         importOrderGroupNamespaceSpecifiers,
+        importGroupOrder
     } = options;
 
     const originalNodes = nodes.map(clone);
@@ -59,6 +60,12 @@ export const getSortedNodes: GetSortedNodes = (nodes, options) => {
         const sortedInsideGroup = getSortedNodesGroup(groupNodes, {
             importOrderGroupNamespaceSpecifiers,
         });
+
+        if (importGroupOrder) {
+            if (importGroupOrder === 'length') {
+                sortedInsideGroup.sort((stringA, stringB) => ((stringA.end || 0) - (stringA.start || 0)) - ((stringB.end || 0) - (stringB.start || 0)))
+            }
+        }
 
         // Sort the import specifiers
         if (importOrderSortSpecifiers) {

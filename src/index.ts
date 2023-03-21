@@ -14,6 +14,12 @@ const options = {
         default: [{ value: [] }],
         description: 'Provide an order to sort imports.',
     },
+    importGroupOrder: {
+        type: 'string',
+        category: 'Global',
+        default: false,
+        description: 'Provide a callback to decide how to order each import in a group either "length" or "alphabetically"'
+    },
     importOrderCaseInsensitive: {
         type: 'boolean',
         category: 'Global',

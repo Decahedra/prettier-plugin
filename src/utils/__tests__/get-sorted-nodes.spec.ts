@@ -24,6 +24,7 @@ test('it returns all sorted nodes', () => {
     const result = getImportNodes(code);
     const sorted = getSortedNodes(result, {
         importOrder: [],
+        importGroupOrder: false,
         importOrderCaseInsensitive: false,
         importOrderSeparation: false,
         importOrderGroupNamespaceSpecifiers: false,
@@ -68,6 +69,7 @@ test('it returns all sorted nodes case-insensitive', () => {
     const result = getImportNodes(code);
     const sorted = getSortedNodes(result, {
         importOrder: [],
+        importGroupOrder: false,
         importOrderCaseInsensitive: true,
         importOrderSeparation: false,
         importOrderGroupNamespaceSpecifiers: false,
@@ -112,6 +114,7 @@ test('it returns all sorted nodes with sort order', () => {
     const result = getImportNodes(code);
     const sorted = getSortedNodes(result, {
         importOrder: ['^a$', '^t$', '^k$', '^B'],
+        importGroupOrder: false,
         importOrderCaseInsensitive: false,
         importOrderSeparation: false,
         importOrderGroupNamespaceSpecifiers: false,
@@ -156,6 +159,7 @@ test('it returns all sorted nodes with sort order case-insensitive', () => {
     const result = getImportNodes(code);
     const sorted = getSortedNodes(result, {
         importOrder: ['^a$', '^t$', '^k$', '^B'],
+        importGroupOrder: false,
         importOrderCaseInsensitive: true,
         importOrderSeparation: false,
         importOrderGroupNamespaceSpecifiers: false,
@@ -199,6 +203,7 @@ test('it returns all sorted import nodes with sorted import specifiers', () => {
     const result = getImportNodes(code);
     const sorted = getSortedNodes(result, {
         importOrder: ['^a$', '^t$', '^k$', '^B'],
+        importGroupOrder: false,
         importOrderCaseInsensitive: false,
         importOrderSeparation: false,
         importOrderGroupNamespaceSpecifiers: false,
@@ -242,6 +247,7 @@ test('it returns all sorted import nodes with sorted import specifiers with case
     const result = getImportNodes(code);
     const sorted = getSortedNodes(result, {
         importOrder: ['^a$', '^t$', '^k$', '^B'],
+        importGroupOrder: false,
         importOrderCaseInsensitive: true,
         importOrderSeparation: false,
         importOrderGroupNamespaceSpecifiers: false,
@@ -285,6 +291,7 @@ test('it returns all sorted nodes with custom third party modules', () => {
     const result = getImportNodes(code);
     const sorted = getSortedNodes(result, {
         importOrder: ['^a$', '<THIRD_PARTY_MODULES>', '^t$', '^k$'],
+        importGroupOrder: false,
         importOrderSeparation: false,
         importOrderCaseInsensitive: true,
         importOrderGroupNamespaceSpecifiers: false,
@@ -305,10 +312,88 @@ test('it returns all sorted nodes with custom third party modules', () => {
     ]);
 });
 
+test('it returns all internal nodes for each group by length', () => {
+    const input = `
+        // first comment
+        // second comment
+        import z from 'z';
+        import g from 'g';
+        import BY from 'BY';
+        import Ba from 'Ba';
+        import XY from 'XY';
+        import Xa from 'Xa';
+        import * as a from 'a';
+        import * as x from 'x';
+        import c, { cD } from 'c';
+        import k, { kE, kB } from 'k';
+        import { tC, tA, tB } from 't';
+        import Test1 from './test1'
+        import Test4 from './test4LongerLong'
+        import Test2 from './test2LongerLonger'
+        import Test3 from './test3LongerLongerLong'
+    `
+    const result = getImportNodes(input);
+    const sorted = getSortedNodes(result, {
+        importOrder: ["^[./]"],
+        importGroupOrder: 'length',
+        importOrderSeparation: false,
+        importOrderCaseInsensitive: true,
+        importOrderGroupNamespaceSpecifiers: false,
+        importOrderSortSpecifiers: false,
+    }) as ImportDeclaration[];
+    expect(getSortedNodesNames(sorted)).toEqual([
+        'g',
+        'z',
+        'Ba',
+        'BY',
+        'Xa',
+        'XY',
+        'a',
+        'x',
+        'c',
+        'k',
+        't',
+        './test1',
+        './test4LongerLong',
+        './test2LongerLonger',
+        './test3LongerLongerLong',
+    ]);
+});
+
+test('it returns all internal nodes for each group alphabetically', () => {
+    const result = getImportNodes(`import Test1 from './test1'\n${code}\nimport Test2 from './test2LongerLonger'\nimport Test3 from './test3LongerLongerLong'\nimport Test4 from './test4LongerLong'`);
+    const sorted = getSortedNodes(result, {
+        importOrder: ["^[./]"],
+        importGroupOrder: false,
+        importOrderSeparation: false,
+        importOrderCaseInsensitive: true,
+        importOrderGroupNamespaceSpecifiers: false,
+        importOrderSortSpecifiers: false,
+    }) as ImportDeclaration[];
+    expect(getSortedNodesNames(sorted)).toEqual([
+        'a',
+        'Ba',
+        'BY',
+        'c',
+        'g',
+        'k',
+        't',
+        'x',
+        'Xa',
+        'XY',
+        'z',
+        './test1',
+        './test2LongerLonger',
+        './test3LongerLongerLong',
+        './test4LongerLong',
+    ]);
+})
+
 test('it returns all sorted nodes with namespace specifiers at the top', () => {
     const result = getImportNodes(code);
     const sorted = getSortedNodes(result, {
         importOrder: [],
+        importGroupOrder: false,
         importOrderCaseInsensitive: false,
         importOrderSeparation: false,
         importOrderGroupNamespaceSpecifiers: true,

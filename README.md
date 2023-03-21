@@ -105,6 +105,17 @@ To move the third party imports at desired place, you can use `<THIRD_PARTY_MODU
 "importOrder": ["^@core/(.*)$", "<THIRD_PARTY_MODULES>", "^@server/(.*)$", "^@ui/(.*)$", "^[./]"],
 ```
 
+#### `importGroupOrder`
+
+**type**: `"length" | false`
+
+**default value**: `false`
+
+A value to decide which way to order imports within each group. Default is alphabetically
+```
+"importGroupOrder": false,
+```
+
 #### `importOrderSeparation`
 
 **type**: `boolean`

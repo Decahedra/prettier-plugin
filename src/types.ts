@@ -15,9 +15,10 @@ export type GetSortedNodes = (
     options: Pick<
         PrettierOptions,
         | 'importOrder'
+        | 'importGroupOrder'
         | 'importOrderCaseInsensitive'
         | 'importOrderSeparation'
         | 'importOrderGroupNamespaceSpecifiers'
         | 'importOrderSortSpecifiers'
-    >,
+    >
 ) => ImportOrLine[];

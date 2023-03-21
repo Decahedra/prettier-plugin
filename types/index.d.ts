@@ -23,6 +23,12 @@ export interface PluginConfig {
     importOrder: string[];
 
     /**
+     * A callback that takes an array of strings for each import statement that will be run for each group of imports
+     * the array will then be returned ordered by the callback (Defaults too alphabetically)
+     */
+    importGroupOrder?: 'length' | false
+
+    /**
      * A boolean value to enable or disable the new line separation
      * between sorted import declarations group. The separation takes place according to the `importOrder`.
      *
@@ -47,21 +53,21 @@ export interface PluginConfig {
     /**
      * A boolean value to enable case-insensitivity in the sorting algorithm
 used to order imports within each match group.
-     * 
+     *
      * For example, when false (or not specified):
-     * 
+     *
      * ```js
      * import ExampleView from './ExampleView';
      * import ExamplesList from './ExamplesList';
      * ```
-     * 
+     *
      * compared with `"importOrderCaseInsensitive": true`:
-     * 
+     *
      * ```js
      * import ExamplesList from './ExamplesList';
      * import ExampleView from './ExampleView';
      * ```
-     * 
+     *
      * @default false
      */
     importOrderCaseInsensitive?: boolean;

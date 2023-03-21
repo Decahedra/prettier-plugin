@@ -21,7 +21,7 @@ test('it should remove nodes from the original code', () => {
     const importNodes = getImportNodes(code);
     const sortedNodes = getSortedNodes(importNodes, {
         importOrder: [],
-        importGroupOrder: 'alphabetical',
+        importGroupOrder: false,
         importOrderCaseInsensitive: false,
         importOrderSeparation: false,
         importOrderGroupNamespaceSpecifiers: false,

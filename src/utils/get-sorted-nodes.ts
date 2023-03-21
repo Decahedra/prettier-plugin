@@ -57,13 +57,21 @@ export const getSortedNodes: GetSortedNodes = (nodes, options) => {
 
         if (groupNodes.length === 0) continue;
 
+
+
+
         const sortedInsideGroup = getSortedNodesGroup(groupNodes, {
             importOrderGroupNamespaceSpecifiers,
+            importGroupOrder
         });
 
-        if (importGroupOrder ==='length') {
-            sortedInsideGroup.sort((stringA, stringB) => ((stringA.end || 0) - (stringA.start || 0)) - ((stringB.end || 0) - (stringB.start || 0)))
-        }
+        //
+        // if (options.importGroupOrder ==='length') {
+        //     console.log('ran', importOrderGroups)
+        //     console.log(sortedInsideGroup.map(v => v.source.value ))
+        //     //     groupNodes.forEach(n => console.log( n.end - n.start, n.source.value))
+        // }
+
 
         // Sort the import specifiers
         if (importOrderSortSpecifiers) {

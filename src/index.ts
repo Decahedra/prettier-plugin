@@ -24,10 +24,14 @@ const options = {
             {
                 value:     'length',
                 description: 'Order based on length of import statement'
+            },
+            {
+                value:     false,
+                description: 'Order based on length of import statement'
             }
         ],
         category: 'Global',
-        default: 'alphabetical',
+        default: false,
         description: 'Provide a callback to decide how to order each import in a group either "length" or "alphabetically"'
     },
     importOrderCaseInsensitive: {

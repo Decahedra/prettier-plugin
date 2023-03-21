@@ -10,7 +10,7 @@ const getSortedImportNodes = (code: string, options?: ParserOptions) => {
 
     return getSortedNodes(importNodes, {
         importOrder: [],
-        importGroupOrder: 'alphabetical',
+        importGroupOrder: false,
         importOrderCaseInsensitive: false,
         importOrderSeparation: false,
         importOrderGroupNamespaceSpecifiers: false,

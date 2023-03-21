@@ -48,6 +48,8 @@ export const getCodeFromAst = (
         },
     });
 
+    // TODO fix this
+    // @ts-ignore
     const { code } = generate(newAST);
 
     return (

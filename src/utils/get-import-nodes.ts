@@ -9,6 +9,7 @@ export const getImportNodes = (code: string, options?: ParserOptions) => {
         sourceType: 'module',
     });
 
+    // TODO fix this
     // @ts-ignore
     traverse(ast, {
         ImportDeclaration(path: NodePath<ImportDeclaration>) {

@@ -15,7 +15,11 @@ const options = {
         description: 'Provide an order to sort imports.',
     },
     importGroupOrder: {
-        type: 'string',
+        type: 'choice',
+        choices: [
+            false,
+            'length'
+        ],
         category: 'Global',
         default: false,
         description: 'Provide a callback to decide how to order each import in a group either "length" or "alphabetically"'

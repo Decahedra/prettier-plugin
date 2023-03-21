@@ -26,7 +26,7 @@ export interface PluginConfig {
      * A callback that takes an array of strings for each import statement that will be run for each group of imports
      * the array will then be returned ordered by the callback (Defaults too alphabetically)
      */
-    importGroupOrder?: 'length' | false
+    importGroupOrder?: 'length' | 'alphabetical'
 
     /**
      * A boolean value to enable or disable the new line separation

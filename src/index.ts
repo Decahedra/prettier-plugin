@@ -17,11 +17,17 @@ const options = {
     importGroupOrder: {
         type: 'choice',
         choices: [
-            false,
-            'length'
+            {
+                value: 'alphabetical',
+                description: 'Default behavior and will output imports in alphabetical'
+            },
+            {
+                value:     'length',
+                description: 'Order based on length of import statement'
+            }
         ],
         category: 'Global',
-        default: false,
+        default: 'alphabetical',
         description: 'Provide a callback to decide how to order each import in a group either "length" or "alphabetically"'
     },
     importOrderCaseInsensitive: {

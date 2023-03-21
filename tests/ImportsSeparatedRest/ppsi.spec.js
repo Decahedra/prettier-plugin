@@ -6,7 +6,7 @@ run_spec(__dirname, ['typescript'], {
         '<THIRD_PARTY_MODULES>',
         '^[./]',
     ],
-    importGroupOrder: false,
+    importGroupOrder: 'alphabetical',
     importOrderSeparation: true,
     importOrderParserPlugins: ['typescript'],
 });

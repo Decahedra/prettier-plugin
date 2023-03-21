@@ -1,5 +1,5 @@
 {
-  "name": "@decahedra/prettier-plugin-decahedra",
+  "name": "@decahedra/prettier-plugin",
   "version": "0.0.0-development",
   "description": "A prettier plugins to cover all Decahedra prettier standards, Initially a fork of import format",
   "main": "lib/src/index.js",

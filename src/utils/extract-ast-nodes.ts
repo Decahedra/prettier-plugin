@@ -10,6 +10,7 @@ import {
 export function extractASTNodes(ast: ParseResult<File>) {
     const importNodes: ImportDeclaration[] = [];
     const directives: Directive[] = [];
+    // @ts-ignore
     traverse(ast, {
         Directive(path: NodePath<Directive>) {
             // Only capture directives if they are at the top scope of the source

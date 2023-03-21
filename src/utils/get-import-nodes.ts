@@ -9,6 +9,7 @@ export const getImportNodes = (code: string, options?: ParserOptions) => {
         sourceType: 'module',
     });
 
+    // @ts-ignore
     traverse(ast, {
         ImportDeclaration(path: NodePath<ImportDeclaration>) {
             const tsModuleParent = path.findParent((p) =>

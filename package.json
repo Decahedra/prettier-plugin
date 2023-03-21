@@ -1,7 +1,7 @@
 {
-  "name": "@decahedra/prettier-plugin-sort-imports",
+  "name": "@decahedra/prettier-plugin-decahedra",
   "version": "0.0.0-development",
-  "description": "A prettier plugins to sort imports in provided RegEx order, Decahedra edition adds extra functions to meet our specs",
+  "description": "A prettier plugins to cover all Decahedra prettier standards, Initially a fork of import format",
   "main": "lib/src/index.js",
   "types": "types/index.d.ts",
   "repository": {
